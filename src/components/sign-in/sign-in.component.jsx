@@ -6,6 +6,9 @@ import {
   signInAuthUserWithEmailandPassword,
 } from "../../utils/firebase.utils";
 
+import { useContext } from "react";
+import { UserContext } from "../../contexts/user.context";
+
 const defaultFromFields = {
   email: "",
   password: "",
@@ -14,6 +17,7 @@ const defaultFromFields = {
 const SignIn = () => {
   const [formFields, setFormFields] = useState(defaultFromFields);
   const { email, password } = formFields;
+  const { setCurrentUser } = useContext(UserContext);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -28,10 +32,11 @@ const SignIn = () => {
     event.preventDefault();
 
     try {
-      const response = await signInAuthUserWithEmailandPassword(
+      const { user } = await signInAuthUserWithEmailandPassword(
         email,
         password
       );
+      setCurrentUser(user);
       // console.log(response);
       resetFormFields();
     } catch (error) {
@@ -58,6 +63,7 @@ const SignIn = () => {
     const { user } = await signInWithGooglePopup();
     const userDocRef = await createUserDocumentFromAuth(user);
     // console.log(userDocRef);
+    setCurrentUser(user);
     setFormFields(defaultFromFields);
   };
 

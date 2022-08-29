@@ -2,7 +2,19 @@ import { Link, Outlet } from "react-router-dom";
 import { ReactComponent as SliceLogo } from "../../assets/slice.svg";
 import { Fragment } from "react";
 
+import { useContext } from "react";
+import { UserContext } from "../../contexts/user.context";
+import { signOutUser } from "../../utils/firebase.utils";
+
 const Navigation = () => {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+
+  const signOutHandler = async () => {
+    await signOutUser();
+    // console.log(response);
+    setCurrentUser(null);
+  };
+
   return (
     <Fragment>
       <nav className="navbar is-spaced has-shadow">
@@ -48,20 +60,6 @@ const Navigation = () => {
 
               {/* <Link to="/">
                   <span
-                    className="navbar-item is-size-5 has-text-weight-semibold has-text-black ml-1 mr-1"
-                    onClick={() => {
-                      var burger = document.querySelector(".burger");
-                      var nav = document.querySelector("#navbarMenu");
-                      burger.classList.remove("is-active");
-                      nav.classList.remove("is-active");
-                    }}
-                  >
-                    My Slices
-                  </span>
-                </Link> */}
-
-              {/* <Link to="/">
-                  <span
                     className="navbar-item is-size-5 has-text-weight-semibold has-text-black has-background-info ml-1 mr-1"
                     onClick={() => {
                       var burger = document.querySelector(".burger");
@@ -74,36 +72,53 @@ const Navigation = () => {
                   </span>
                 </Link> */}
 
-              {/* <Link href="/api/auth/logout"> */}
-              {/* <span
-                  className="navbar-item is-size-5 has-text-weight-semibold has-text-black ml-1 mr-1"
-                  onClick={() => {
-                    var burger = document.querySelector(".burger");
-                    var nav = document.querySelector("#navbarMenu");
-                    burger.classList.remove("is-active");
-                    nav.classList.remove("is-active");
-                  }}
-                >
-                  Sign Out
-                </span> */}
-
-              {/* </Link> */}
-
-              {/* )} */}
-
-              <Link to="/auth">
-                <div
-                  className="navbar-item is-size-5 has-text-weight-semibold has-text-black ml-1 mr-1"
-                  onClick={() => {
-                    var burger = document.querySelector(".burger");
-                    var nav = document.querySelector("#navbarMenu");
-                    burger.classList.remove("is-active");
-                    nav.classList.remove("is-active");
-                  }}
-                >
-                  Sign In
+              {currentUser && (
+                <div>
+                  {/* <Link to="/">
+                    <span
+                      className="navbar-item is-size-5 has-text-weight-semibold has-text-black ml-1 mr-1"
+                      onClick={() => {
+                        var burger = document.querySelector(".burger");
+                        var nav = document.querySelector("#navbarMenu");
+                        burger.classList.remove("is-active");
+                        nav.classList.remove("is-active");
+                      }}
+                    >
+                      My Slices
+                    </span>
+                  </Link> */}
+                  <Link to="/">
+                    <span
+                      className="navbar-item is-size-5 has-text-weight-semibold has-text-black ml-1 mr-1"
+                      onClick={() => {
+                        signOutHandler();
+                        var burger = document.querySelector(".burger");
+                        var nav = document.querySelector("#navbarMenu");
+                        burger.classList.remove("is-active");
+                        nav.classList.remove("is-active");
+                      }}
+                    >
+                      Sign Out
+                    </span>
+                  </Link>
                 </div>
-              </Link>
+              )}
+
+              {!currentUser && (
+                <Link to="/auth">
+                  <div
+                    className="navbar-item is-size-5 has-text-weight-semibold has-text-black ml-1 mr-1"
+                    onClick={() => {
+                      var burger = document.querySelector(".burger");
+                      var nav = document.querySelector("#navbarMenu");
+                      burger.classList.remove("is-active");
+                      nav.classList.remove("is-active");
+                    }}
+                  >
+                    Sign In
+                  </div>
+                </Link>
+              )}
             </div>
           </div>
         </div>
