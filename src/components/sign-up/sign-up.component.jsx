@@ -14,6 +14,18 @@ const SignUp = () => {
               <div class="control">
                 <input
                   class="input is-medium is-rounded"
+                  type="text"
+                  placeholder="Display Name"
+                  autocomplete="username"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input is-medium is-rounded"
                   type="email"
                   placeholder="Email"
                   autocomplete="username"
@@ -21,6 +33,7 @@ const SignUp = () => {
                 />
               </div>
             </div>
+
             <div class="field">
               <div class="control">
                 <input
