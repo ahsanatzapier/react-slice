@@ -3,13 +3,13 @@ import SignUp from "../../components/sign-up/sign-up.component";
 
 const Authentication = () => {
   return (
-    <div class="columns">
-      <div class="column">
+    <div className="columns is-centered is-vcentered">
+      <div className="column is-narrow">
         {" "}
         <SignIn />
       </div>
 
-      <div class="column">
+      <div className="column is-narrow">
         {" "}
         <SignUp />
       </div>

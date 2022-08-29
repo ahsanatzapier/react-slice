@@ -1,6 +1,7 @@
 import Typed from "react-typed";
 import { Link } from "react-router-dom";
 import { ReactComponent as PIE } from "../../assets/pie.svg";
+import { ReactComponent as SliceLogo } from "../../assets/slice.svg";
 
 import "./home.style.css";
 
@@ -12,12 +13,13 @@ const Home = () => {
       {/* <link rel="apple-touch-icon" href="/custom_icon.png" /> */}
       <section className=" SectionComponent hero section is-block is-relative is-medium">
         <div className="container">
-          <div className="columns is-vcentered is-desktop">
-            <div className="column is-5-desktop has-text-centered-touch">
+          <div className="columns is-vcentered is-centered">
+            <div className="column is-narrow has-text-centered">
               <header className="SectionHeader">
-                <h1 className="title has-text-weight-bold is-1 is-size-2-mobile is-spaced mb-2 color-orange">
+                <SliceLogo />
+                {/* <h1 className="title has-text-weight-bold is-1 is-size-2-mobile is-spaced mb-2 color-orange">
                   SLICE
-                </h1>
+                </h1> */}
                 <h1 className="title is-3 is-size-3-mobile is-spaced mb-0">
                   The easy way
                 </h1>
@@ -52,10 +54,9 @@ const Home = () => {
                 </div>
               </Link>
             </div>
-            <div className="column is-1"></div>
-            <div className="column">
+            {/* <div className="column is-narrow">
               <PIE />
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

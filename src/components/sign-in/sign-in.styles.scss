@@ -23,3 +23,11 @@ background-color: white;
 input {
   background: var(--shadowDark) !important;
 }
+
+
+@media only screen and (max-device-width: 500px) {
+
+  .login {
+    width: auto;
+  }
+}

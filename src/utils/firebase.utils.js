@@ -1,13 +1,13 @@
 import { initializeApp } from "firebase/app";
 
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import {
-  getFirestore,
-  doc,
-  getDoc,
-  setDoc,
-  collection,
-} from "firebase/firestore";
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCo-0daKFv6Isz4ok-QlykAVmQm9ZsmGno",
@@ -18,6 +18,7 @@ const firebaseConfig = {
   appId: "1:453626314613:web:92cab4e24a7e14a96f5d3c",
 };
 
+// eslint-disable-next-line
 const app = initializeApp(firebaseConfig);
 
 const provider = new GoogleAuthProvider();
@@ -32,7 +33,17 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 
 export const db = getFirestore();
 
-export const createUserDocumentFromAuth = async (userAuth) => {
+/**
+ * ***************************
+ * createUserDocumentFromAuth
+ * ***************************
+ */
+export const createUserDocumentFromAuth = async (
+  userAuth,
+  additionalInformation = {}
+) => {
+  if (!userAuth) return;
+
   // console.log(userAuth);
 
   const userDocRef = doc(db, "users", userAuth.uid);
@@ -46,10 +57,35 @@ export const createUserDocumentFromAuth = async (userAuth) => {
     const createdAt = new Date();
 
     try {
-      await setDoc(userDocRef, { displayName, email, createdAt });
+      await setDoc(userDocRef, {
+        displayName,
+        email,
+        createdAt,
+        ...additionalInformation,
+      });
     } catch (error) {
-      console.log("error creating the user", error.message);
+      console.log("error creating the user document", error.message);
     }
   }
   return userDocRef;
+};
+
+/**
+ * ***********************************
+ * createAuthUserWithEmailandPassword
+ * ***********************************
+ */
+export const createAuthUserWithEmailandPassword = async (email, password) => {
+  if (!email || !password) return;
+  return await createUserWithEmailAndPassword(auth, email, password);
+};
+
+/**
+ * ***********************************
+ * signInAuthUserWithEmailandPassword
+ * ***********************************
+ */
+export const signInAuthUserWithEmailandPassword = async (email, password) => {
+  if (!email || !password) return;
+  return await signInWithEmailAndPassword(auth, email, password);
 };
