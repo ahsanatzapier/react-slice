@@ -5,8 +5,7 @@ import {
   createUserDocumentFromAuth,
 } from "../../utils/firebase.utils";
 
-import { useContext } from "react";
-import { UserContext } from "../../contexts/user.context";
+import { useNavigate } from "react-router-dom";
 
 const defaultFromFields = {
   displayName: "",
@@ -18,7 +17,8 @@ const defaultFromFields = {
 const SignUp = () => {
   const [formFields, setFormFields] = useState(defaultFromFields);
   const { displayName, email, password, confirmPassword } = formFields;
-  const { setCurrentUser } = useContext(UserContext);
+  // const { setCurrentUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -43,8 +43,9 @@ const SignUp = () => {
       );
 
       await createUserDocumentFromAuth(user, { displayName });
-      setCurrentUser(user);
+      // setCurrentUser(user);
       resetFormFields();
+      navigate("/slices");
 
       // console.log(response);
     } catch (error) {

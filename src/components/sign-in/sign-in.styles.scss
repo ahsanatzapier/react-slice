@@ -1,21 +1,21 @@
 
 
-:root {
-  --shadowDark: #D9DDE6;
-  --background: #E4E9F2;
-  --shadowLight: #EFF5FE;
-}
+// :root {
+//   --shadowDark: #D9DDE6;
+//   --background: #E4E9F2;
+//   --shadowLight: #EFF5FE;
+// }
 
 
-.hero-body {
-  justify-content: center;
-    // background: var(--background);
-}
+// .hero-body {
+//   justify-content: center;
+//     // background: var(--background);
+// }
 
 .login {
   border-radius: 25px;
   padding: 1.5rem;
-  box-shadow: 8px 8px 15px var(--shadowDark), -8px -8px 15px var(--shadowLight);
+  // box-shadow: 8px 8px 15px var(--shadowDark), -8px -8px 15px var(--shadowLight);
 background-color: white;
 // width: 500px;
 }
@@ -25,9 +25,9 @@ input {
 }
 
 
-@media only screen and (max-device-width: 500px) {
+// @media only screen and (max-device-width: 500px) {
 
-  .login {
-    width: auto;
-  }
-}
+//   .login {
+//     width: auto;
+//   }
+// }

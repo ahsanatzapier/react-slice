@@ -13,19 +13,19 @@
 }
 
 .login {
-  border-radius: 25px;
-  padding: 1.5rem;
-  box-shadow: 8px 8px 15px var(--shadowDark), -8px -8px 15px var(--shadowLight);
-background-color: white;
+  // border-radius: 25px;
+  // padding: 1.5rem;
+  // box-shadow: 8px 8px 15px var(--shadowDark), -8px -8px 15px var(--shadowLight);
+// background-color: white;
 width: 400px;
 
     margin: 0 auto;
     position: relative;
 }
 
-input {
-  background: var(--shadowDark) !important;
-}
+// input {
+//   background: var(--shadowDark) !important;
+// }
 
 
 @media only screen and (max-device-width: 500px) {

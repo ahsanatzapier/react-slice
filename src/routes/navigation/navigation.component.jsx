@@ -7,13 +7,7 @@ import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firebase.utils";
 
 const Navigation = () => {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
-
-  const signOutHandler = async () => {
-    await signOutUser();
-    // console.log(response);
-    setCurrentUser(null);
-  };
+  const { currentUser } = useContext(UserContext);
 
   return (
     <Fragment>
@@ -73,35 +67,40 @@ const Navigation = () => {
                 </Link> */}
 
               {currentUser && (
-                <div>
-                  {/* <Link to="/">
-                    <span
-                      className="navbar-item is-size-5 has-text-weight-semibold has-text-black ml-1 mr-1"
-                      onClick={() => {
-                        var burger = document.querySelector(".burger");
-                        var nav = document.querySelector("#navbarMenu");
-                        burger.classList.remove("is-active");
-                        nav.classList.remove("is-active");
-                      }}
-                    >
-                      My Slices
-                    </span>
-                  </Link> */}
-                  <Link to="/">
-                    <span
-                      className="navbar-item is-size-5 has-text-weight-semibold has-text-black ml-1 mr-1"
-                      onClick={() => {
-                        signOutHandler();
-                        var burger = document.querySelector(".burger");
-                        var nav = document.querySelector("#navbarMenu");
-                        burger.classList.remove("is-active");
-                        nav.classList.remove("is-active");
-                      }}
-                    >
-                      Sign Out
-                    </span>
-                  </Link>
-                </div>
+                <>
+                  <div className="mr-5">
+                    <Link to="/slices">
+                      <span
+                        className="navbar-item is-size-5 has-text-weight-semibold has-text-black ml-1 mr-1"
+                        onClick={() => {
+                          var burger = document.querySelector(".burger");
+                          var nav = document.querySelector("#navbarMenu");
+                          burger.classList.remove("is-active");
+                          nav.classList.remove("is-active");
+                        }}
+                      >
+                        My Slices
+                      </span>
+                    </Link>
+                  </div>
+
+                  <div>
+                    <Link to="/">
+                      <span
+                        className="navbar-item is-size-5 has-text-weight-semibold has-text-black ml-1 mr-1"
+                        onClick={() => {
+                          signOutUser();
+                          var burger = document.querySelector(".burger");
+                          var nav = document.querySelector("#navbarMenu");
+                          burger.classList.remove("is-active");
+                          nav.classList.remove("is-active");
+                        }}
+                      >
+                        Sign Out
+                      </span>
+                    </Link>
+                  </div>
+                </>
               )}
 
               {!currentUser && (
