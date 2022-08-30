@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const PageNotFound = () => {
   return (
     <div>
-      <div className="hero is-large has-background">
+      <div className="hero is-fullheight-with-navbar has-background">
         <img
           className="hero-background is-transparent"
           src="https://img.freepik.com/free-vector/pink-color-watercolor-background_125540-1216.jpg?w=2000&t=st=1661828887~exp=1661829487~hmac=1688ca81e39ecde771e5d32e8fcceb77fed79cba47fc7c6f9a14681c6de8524e"

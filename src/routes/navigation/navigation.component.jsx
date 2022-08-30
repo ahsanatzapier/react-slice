@@ -68,7 +68,22 @@ const Navigation = () => {
 
               {currentUser && (
                 <>
-                  <div className="mr-5">
+                  <div className="mr-2">
+                    <Link to="/addslice">
+                      <span
+                        className="navbar-item is-size-5 has-text-weight-semibold has-text-black ml-1 mr-1"
+                        onClick={() => {
+                          var burger = document.querySelector(".burger");
+                          var nav = document.querySelector("#navbarMenu");
+                          burger.classList.remove("is-active");
+                          nav.classList.remove("is-active");
+                        }}
+                      >
+                        Add a Slice
+                      </span>
+                    </Link>
+                  </div>
+                  <div className="mr-2">
                     <Link to="/slices">
                       <span
                         className="navbar-item is-size-5 has-text-weight-semibold has-text-black ml-1 mr-1"

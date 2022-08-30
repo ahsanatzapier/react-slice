@@ -3,10 +3,10 @@ import NoSlices from "../../components/no-slices/no-slices.component";
 
 const Slices = () => {
   return (
-    <div className="hero is-fullheight has-background">
+    <div className="hero is-fullheight-with-navbar has-background">
       <img
         className="hero-background is-align-items-stretch is-transparent"
-        src="https://img.freepik.com/free-photo/abstract-pink-red-background-christmas-valentines-layout-des_1258-262.jpg?w=2000&t=st=1661830385~exp=1661830985~hmac=b9f011888c8efa0f2cb34dc20a5b0f585f3a23d0116cd44bc7287cf3146b6a60"
+        src="https://img.freepik.com/free-photo/pastel-pink-oil-paint-textured-background_53876-108408.jpg?w=2000&t=st=1661834847~exp=1661835447~hmac=8832ddc3409f0ccae4f35a07b68a47e390bcc7bfc48d6467afeb5acf4887ff79"
       />
       <div class="hero-body  is-align-items-stretch">
         <div class="container  is-flex">
