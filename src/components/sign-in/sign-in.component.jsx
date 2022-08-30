@@ -6,8 +6,7 @@ import {
   signInAuthUserWithEmailandPassword,
 } from "../../utils/firebase.utils";
 
-import { useContext } from "react";
-import { UserContext } from "../../contexts/user.context";
+import { useNavigate } from "react-router-dom";
 
 const defaultFromFields = {
   email: "",
@@ -17,7 +16,8 @@ const defaultFromFields = {
 const SignIn = () => {
   const [formFields, setFormFields] = useState(defaultFromFields);
   const { email, password } = formFields;
-  const { setCurrentUser } = useContext(UserContext);
+  // const { setCurrentUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -36,9 +36,10 @@ const SignIn = () => {
         email,
         password
       );
-      setCurrentUser(user);
+      // setCurrentUser(user);
       // console.log(response);
       resetFormFields();
+      navigate("/slices");
     } catch (error) {
       // console.log(error.message);
       switch (error.code) {
@@ -60,11 +61,12 @@ const SignIn = () => {
   };
 
   const signInWithGoogle = async () => {
-    const { user } = await signInWithGooglePopup();
-    const userDocRef = await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
+    // const userDocRef = await createUserDocumentFromAuth(user);
     // console.log(userDocRef);
-    setCurrentUser(user);
+    // setCurrentUser(user);
     setFormFields(defaultFromFields);
+    navigate("/slices");
   };
 
   return (
