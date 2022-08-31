@@ -70,8 +70,8 @@ const SignIn = () => {
   };
 
   return (
-    <section className="hero is-medium">
-      <div className="hero-body has-text-centered">
+    <section className="">
+      <div className="has-text-centered">
         <div className="login">
           <h1 className="title has-text-weight-bold is-3 is-size-2-mobile is-spaced mb-2 color-orange mb-5">
             Sign In
