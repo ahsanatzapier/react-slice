@@ -1,4 +1,4 @@
-import Typed from "react-typed";
+// import Typed from "react-typed";
 import { Link } from "react-router-dom";
 import { ReactComponent as SliceLogo } from "../../assets/slice.svg";
 import { Fragment, useContext } from "react";
@@ -28,7 +28,7 @@ const Home = () => {
                     </h1>
                     <h1 className="title is-3 is-size-3-mobile is-spaced mb-0">
                       to{" "}
-                      <Typed
+                      {/* <Typed
                         loop
                         typeSpeed={90}
                         backSpeed={50}
@@ -38,7 +38,7 @@ const Home = () => {
                         showCursor={false}
                         className="title has-text-weight-bold is-3 is-size-3-mobile is-spaced has-text-link"
                         cursorChar="|"
-                      />
+                      /> */}
                     </h1>
                     <div>
                       <h1 className="title is-3 is-size-3-mobile is-spaced mb-0">
