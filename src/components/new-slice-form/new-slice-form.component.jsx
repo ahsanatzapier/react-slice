@@ -1,75 +1,114 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { addSliceToSliceArray } from "../../utils/firebase.utils";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/user.context";
+
+const defaultFromFields = {
+  title: "",
+  description: "",
+  link: "",
+  category: "Frontend",
+  timeToFinish: "1 Day",
+  shareStatus: "Private",
+};
 
 const NewSliceForm = () => {
+  const [formFields, setFormFields] = useState(defaultFromFields);
+  const { title, description, link, category, timeToFinish, shareStatus } =
+    formFields;
+  const { currentUser } = useContext(UserContext);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormFields({ ...formFields, [name]: value });
+  };
+
+  const resetFormFields = () => {
+    setFormFields(defaultFromFields);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const createdAt = new Date();
+    const updatedAt = new Date();
+    const sid = new Date().valueOf();
+
+    const sliceObject = {
+      createdAt,
+      updatedAt,
+      sid,
+      ...formFields,
+    };
+
+    // console.log(sliceObject);
+
+    try {
+      await addSliceToSliceArray(currentUser, sliceObject);
+      resetFormFields();
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <div className="columns mt-5">
       <div className="column is-6 is-offset-3 box has-background-white">
         <div className="content p-3">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="field">
               <h1 className="title pb-0 mt-3">Add New Slice</h1>
               <label className="label">Title</label>
 
               <div className="control">
                 <input
-                  required
-                  // onChange={handleChange}
-                  name="title"
-                  // value={form.title}
                   className="input"
                   type="text"
                   placeholder="Ex. Learning Next.JS"
+                  onChange={handleChange}
+                  name="title"
+                  value={title}
+                  required
                 />
               </div>
             </div>
-
             <div className="field">
               <label className="label">Description</label>
-
               <div className="control">
                 <textarea
-                  // {...register("description", {
-                  //   required: (
-                  //     <p className="has-background-warning">
-                  //       ⚠ Description is required
-                  //     </p>
-                  //   ),
-                  // })}
-                  // value={form.description}
-                  // onChange={handleChange}
-                  name="description"
                   className="textarea"
                   placeholder="Example. A course dedicated to learning Next.JS"
+                  onChange={handleChange}
+                  name="description"
+                  value={description}
+                  required
                 ></textarea>
               </div>
             </div>
-
             <div className="field">
               <label className="label">Link</label>
               <div className="control">
                 <input
-                  // {...register("link", {
-                  //   required: (
-                  //     <p className="has-background-warning">⚠ Link is required</p>
-                  //   ),
-                  // })}
-                  // value={form.link}
-                  // onChange={handleChange}
-                  name="link"
                   className="input"
                   type="text"
                   placeholder="Ex. http://next.js"
+                  onChange={handleChange}
+                  name="link"
+                  value={link}
                   autoCapitalize="Private"
+                  required
                 />
               </div>
             </div>
-
             <div className="field">
               <label className="label">Category</label>
               <div className="control">
                 <div className="select">
-                  {/* <select value={form.category} onChange={handleChange}> */}
-                  <select>
+                  <select
+                    value={category}
+                    onChange={handleChange}
+                    name="category"
+                  >
                     <option>Frontend</option>
                     <option>Backend</option>
                     <option>Other</option>
@@ -82,14 +121,14 @@ const NewSliceForm = () => {
               <label className="label">Estimated Time Commitment</label>
               <div className="control">
                 <input
-                  // value={form.timeToFinish}
-                  // onChange={handleChange}
-                  name="timeToFinish"
                   className="input"
                   type="text"
                   placeholder="Ex. 60"
+                  onChange={handleChange}
+                  name="timeToFinish"
+                  value={timeToFinish}
+                  required
                 />
-                {/* {errors?.timeToFinish && errors.timeToFinish.message} */}
                 <p className="help has-text-grey pb-0">
                   Ex. 1 Hour • 2 Days • 3 Weeks
                 </p>
@@ -100,37 +139,36 @@ const NewSliceForm = () => {
               <label className="label">Sharing Preference</label>
               <div className="control">
                 <div className="select">
-                  {/* <select value={form.sharedWith} onChange={handleChange}> */}
-                  <select>
+                  <select
+                    value={shareStatus}
+                    onChange={handleChange}
+                    name="shareStatus"
+                  >
                     <option>Private</option>
                     <option>Public</option>
                   </select>
                 </div>
-                {/* {errors?.sharedWith && errors.sharedWith.message} */}
               </div>
             </div>
 
             <hr></hr>
 
             <div className="field is-grouped">
-              <button
-                type="button"
-                // onClick={handleSubmit(submitForm)}
-                className="button is-link mr-2"
-              >
+              <button type="submit" className="button is-link mr-2">
                 Submit
               </button>
-              <button
+
+              {/* <button
                 type="button"
                 // onClick={resetForm}
                 className="button is-link has-background-dark"
               >
                 Reset Form
-              </button>
+              </button> */}
 
-              <Link to="/">
+              {/* <Link to="/">
                 <span className="button is-danger ml-2">Cancel</span>
-              </Link>
+              </Link> */}
             </div>
           </form>
         </div>

@@ -4,7 +4,6 @@ import {
   createAuthUserWithEmailandPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase.utils";
-
 import { useNavigate } from "react-router-dom";
 
 const defaultFromFields = {
@@ -17,7 +16,6 @@ const defaultFromFields = {
 const SignUp = () => {
   const [formFields, setFormFields] = useState(defaultFromFields);
   const { displayName, email, password, confirmPassword } = formFields;
-  // const { setCurrentUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleChange = (event) => {

@@ -7,10 +7,10 @@ const AddSlice = () => {
         className="hero-background is-align-items-stretch is-transparent"
         src="https://img.freepik.com/premium-photo/watercolor-soft-pink-abstract-background_3590-98.jpg?w=2000"
       />
-      <div class="hero-body  is-align-items-stretch">
-        <div class="container  is-flex">
-          <div class="columns is-centered is-flex-grow-1">
-            <div class="column">
+      <div className="hero-body  is-align-items-stretch">
+        <div className="container  is-flex">
+          <div className="columns is-centered is-flex-grow-1">
+            <div className="column">
               <NewSliceForm />
             </div>
           </div>
