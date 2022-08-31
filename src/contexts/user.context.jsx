@@ -7,11 +7,14 @@ import {
 export const UserContext = createContext({
   currentUser: null,
   setCurrentUser: () => null,
+  userLoaded: null,
+  setUserLoaded: () => null,
 });
 
 export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
-  const value = { currentUser, setCurrentUser };
+  const [userLoaded, setUserLoaded] = useState(false);
+  const value = { currentUser, setCurrentUser, userLoaded, setUserLoaded };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
@@ -19,6 +22,7 @@ export const UserProvider = ({ children }) => {
         createUserDocumentFromAuth(user);
       }
       setCurrentUser(user);
+      setUserLoaded(true);
     });
     return unsubscribe;
   }, []);

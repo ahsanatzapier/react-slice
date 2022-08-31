@@ -2,6 +2,7 @@ import { useState } from "react";
 import { addSliceToSliceArray } from "../../utils/firebase.utils";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/user.context";
+import { useNavigate } from "react-router-dom";
 
 const defaultFromFields = {
   title: "",
@@ -17,6 +18,7 @@ const NewSliceForm = () => {
   const { title, description, link, category, timeToFinish, shareStatus } =
     formFields;
   const { currentUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -41,11 +43,10 @@ const NewSliceForm = () => {
       ...formFields,
     };
 
-    // console.log(sliceObject);
-
     try {
       await addSliceToSliceArray(currentUser, sliceObject);
       resetFormFields();
+      navigate("/slices");
     } catch (error) {
       console.log(error.message);
     }
