@@ -6,19 +6,10 @@ import { getUserSlicesFromArray } from "../../utils/firebase.utils";
 import { SlicesContext } from "../../contexts/slices.context";
 
 const Slices = () => {
-  const { currentSlices, setCurrentSlices } = useContext(SlicesContext);
-  const { currentUser, userLoaded } = useContext(UserContext);
-  console.log("Slice - Current User", currentUser);
-  console.log("Slice - Current Slices", currentSlices);
+  const { currentSlices, slicesLoaded } = useContext(SlicesContext);
+  const { userLoaded } = useContext(UserContext);
 
-  // useEffect(() => {
-  //   const getSlices = async () => {
-  //     const slices = await getUserSlicesFromArray(currentUser);
-  //     setCurrentSlices(slices);
-  //   };
-
-  //   getSlices();
-  // }, []);
+  // console.log(currentSlices.length);
 
   return (
     <Fragment>
@@ -32,9 +23,17 @@ const Slices = () => {
           <div className="hero-body  is-align-items-stretch">
             <div className="container  is-flex">
               <div className="columns is-centered  is-flex-grow-1">
-                <div className="column">
-                  <NoSlices />
-                </div>
+                {currentSlices && (
+                  <div className="column">
+                    {currentSlices.map((slice) => (
+                      <div key={slice.sid}>
+                        <div>{slice.title}</div>
+                      </div>
+                    ))}
+
+                    {/* <NoSlices /> */}
+                  </div>
+                )}
               </div>
             </div>
           </div>

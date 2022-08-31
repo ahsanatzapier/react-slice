@@ -15,7 +15,10 @@ export const SlicesContext = createContext({
 
 export const SlicesProvider = ({ children }) => {
   const [currentSlices, setCurrentSlices] = useState(null);
-  const value = { currentSlices, setCurrentSlices };
+  const value = {
+    currentSlices,
+    setCurrentSlices,
+  };
 
   const { currentUser } = useContext(UserContext);
 
@@ -24,6 +27,12 @@ export const SlicesProvider = ({ children }) => {
       if (user) {
         createSliceArrayForUser(user);
       }
+      const setSlices = async () => {
+        const { slices } = await getUserSlicesFromArray(user);
+        setCurrentSlices(slices);
+      };
+
+      setSlices();
     });
     return unsubscribe;
   }, []);

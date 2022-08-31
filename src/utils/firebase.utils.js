@@ -163,6 +163,8 @@ export const createSliceArrayForUser = async (userAuth) => {
  * **************************
  */
 export const getUserSlicesFromArray = async (userAuth) => {
+  if (!userAuth) return;
+
   const userDocRef = doc(db, "slices", userAuth.uid);
 
   const docSnap = await getDoc(userDocRef);
