@@ -1,6 +1,24 @@
-# Getting Started with Create React App
+# Live Demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+https://thesliceapp.netlify.app/
+
+# What is Mini Muslim?
+
+![alt text](https://github.com/ahsanatzapier/react-slice/blob/main/src/assets/slice.svg?raw=true)
+
+Slice is the easy way to collect, organize, and manage your online learning resources. It uses React for UI development and Firebase for the database. The app is hosted on Netlify. The app's features include being able to authenticate using Firebase, create and delete Slices (learning resources) stored on Firestorm, and organize each Slice with attributes such as Category and Time Commitment.
+
+# Preview
+
+![](https://cdn.zappy.app/e2502cc64897d32077166783df14d1ce.png)
+
+![](https://cdn.zappy.app/feb8f93a66d2c50dee59c37b85f62067.png)
+
+![](https://cdn.zappy.app/7cc4a256142fc4ae87cc8f39bdf618f2.png)
+
+![](https://cdn.zappy.app/2b4432f0b614e7ae43d60c5b93ba27a0.png)
+
+![](https://cdn.zappy.app/ac3f8d70215ec8c88f33a2f0139598a5.png)
 
 ## Available Scripts
 
