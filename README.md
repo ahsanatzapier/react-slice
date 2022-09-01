@@ -2,7 +2,7 @@
 
 https://thesliceapp.netlify.app/
 
-# What is Mini Muslim?
+# What is Slice?
 
 ![alt text](https://github.com/ahsanatzapier/react-slice/blob/main/src/assets/slice.svg?raw=true)
 
