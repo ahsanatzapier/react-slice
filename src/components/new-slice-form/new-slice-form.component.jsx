@@ -2,7 +2,10 @@ import { useState } from "react";
 import { addSliceToSliceArray } from "../../utils/firebase.utils";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/user.context";
+import { SlicesContext } from "../../contexts/slices.context";
 import { useNavigate } from "react-router-dom";
+
+import { getUserSlicesFromArray } from "../../utils/firebase.utils";
 
 const defaultFromFields = {
   title: "",
@@ -18,6 +21,7 @@ const NewSliceForm = () => {
   const { title, description, link, category, timeToFinish, shareStatus } =
     formFields;
   const { currentUser } = useContext(UserContext);
+  const { setCurrentSlices, setSlicesLoaded } = useContext(SlicesContext);
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -46,6 +50,14 @@ const NewSliceForm = () => {
     try {
       await addSliceToSliceArray(currentUser, sliceObject);
       resetFormFields();
+
+      const setSlices = async () => {
+        const { slices } = await getUserSlicesFromArray(currentUser);
+        setCurrentSlices(slices);
+        setSlicesLoaded(true);
+      };
+
+      setSlices();
       navigate("/slices");
     } catch (error) {
       console.log(error.message);
@@ -53,7 +65,7 @@ const NewSliceForm = () => {
   };
 
   return (
-    <div className="columns mt-5">
+    <div className="columns  mt-5">
       <div className="column is-6 is-offset-3 box has-background-white">
         <div className="content p-3">
           <form onSubmit={handleSubmit}>

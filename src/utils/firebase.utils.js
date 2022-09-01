@@ -16,6 +16,7 @@ import {
   setDoc,
   arrayUnion,
   updateDoc,
+  arrayRemove,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -120,6 +121,29 @@ export const addSliceToSliceArray = async (userAuth, slice) => {
   if (userSnapshot.exists()) {
     try {
       await updateDoc(userDocRef, { slices: arrayUnion(slice) });
+    } catch (error) {
+      console.log("error adding slice to array", error.message);
+    }
+  }
+  return userDocRef;
+};
+
+/**
+ * **************************
+ * removeSliceFromSliceArray
+ * **************************
+ */
+export const removeSliceFromSliceArray = async (userAuth, slice) => {
+  if (!userAuth && slice) return;
+
+  console.log("remove-slice", userAuth, slice);
+
+  const userDocRef = doc(db, "slices", userAuth.uid);
+  const userSnapshot = await getDoc(userDocRef);
+
+  if (userSnapshot.exists()) {
+    try {
+      await updateDoc(userDocRef, { slices: arrayRemove(slice) });
     } catch (error) {
       console.log("error adding slice to array", error.message);
     }

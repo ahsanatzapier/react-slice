@@ -11,13 +11,18 @@ import { UserContext } from "./user.context";
 export const SlicesContext = createContext({
   currentSlices: {},
   setCurrentSlices: () => null,
+  slicesLoaded: null,
+  setSlicesLoaded: () => null,
 });
 
 export const SlicesProvider = ({ children }) => {
   const [currentSlices, setCurrentSlices] = useState(null);
+  const [slicesLoaded, setSlicesLoaded] = useState(false);
   const value = {
     currentSlices,
     setCurrentSlices,
+    slicesLoaded,
+    setSlicesLoaded,
   };
 
   const { currentUser } = useContext(UserContext);
@@ -30,6 +35,7 @@ export const SlicesProvider = ({ children }) => {
       const setSlices = async () => {
         const { slices } = await getUserSlicesFromArray(user);
         setCurrentSlices(slices);
+        setSlicesLoaded(true);
       };
 
       setSlices();

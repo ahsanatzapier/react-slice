@@ -24,10 +24,10 @@ const Home = () => {
                   <header className="SectionHeader">
                     <SliceLogo />
                     <h1 className="title is-3 is-size-3-mobile is-spaced mb-0">
-                      The easy way
+                      The easy way to
                     </h1>
-                    <h1 className="title is-3 is-size-3-mobile is-spaced mb-0">
-                      to{" "}
+                    <h1 className="title is-3 is-size-3-mobile is-spaced mb-0 has-text-link">
+                      collect, organize, and manage
                       {/* <Typed
                         loop
                         typeSpeed={90}
@@ -42,10 +42,10 @@ const Home = () => {
                     </h1>
                     <div>
                       <h1 className="title is-3 is-size-3-mobile is-spaced mb-0">
-                        resources for
+                        your online learning
                       </h1>
                       <h1 className="title is-3 is-size-3-mobile is-spaced mb-0">
-                        your PIE journey
+                        resources
                       </h1>
                     </div>
                   </header>
